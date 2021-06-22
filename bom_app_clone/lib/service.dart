@@ -57,7 +57,9 @@ class _ServiceState extends State<Service> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: Text('전체 페이지'),),
+        appBar: AppBar(
+          title: Text('전체 페이지'),
+        ),
         body: _children[_currentIndex],
       ),
     );
