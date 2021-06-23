@@ -1,3 +1,4 @@
+import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'views/Home.dart';
@@ -8,6 +9,7 @@ import 'views/health.dart';
 import 'views/info.dart';
 import 'views/manager.dart';
 import 'views/market.dart';
+import 'package:bom_app_clone/widget/addBar.dart';
 
 class Service extends StatefulWidget {
   @override
@@ -57,7 +59,7 @@ class _ServiceState extends State<Service> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: Text('전체 페이지'),),
+        appBar: appBar(context),
         body: _children[_currentIndex],
       ),
     );
