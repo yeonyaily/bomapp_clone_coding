@@ -27,13 +27,7 @@ class Manager extends StatelessWidget {
         endDrawer: drawer(context),
         body: Text('manager'),
       ),
-      body: Container(
-        child: Row(
-          children: [
-            Text('01 ' + '/ 06'),
-          ],
-        ),
-      ),
+
     );
   }
 }

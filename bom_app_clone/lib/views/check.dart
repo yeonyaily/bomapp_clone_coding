@@ -32,13 +32,6 @@ class _CheckState extends State<Check> {
         endDrawer: drawer(context),
         body: Text('check'),
       ),
-      body: Container(
-        child: Row(
-          children: [
-            Text('02 ' + '/ 06'),
-          ],
-        ),
-      ),
     );
   }
 }
