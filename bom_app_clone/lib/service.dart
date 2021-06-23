@@ -1,3 +1,5 @@
+import 'package:bom_app_clone/widget/addBar.dart';
+import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'views/Home.dart';
@@ -10,6 +12,7 @@ import 'views/manager.dart';
 import 'views/market.dart';
 
 class Service extends StatefulWidget {
+
   @override
   _ServiceState createState() => _ServiceState();
 }
@@ -22,8 +25,10 @@ class _ServiceState extends State<Service> {
   void _upScroll() {
     setState(() {
       if(_currentIndex == _children.length-1){}
-      else
+      else {
         _currentIndex = _currentIndex + 1;
+        Navigator.pushNamed(context, '/manager');
+      }
     });
   }
 
@@ -57,14 +62,14 @@ class _ServiceState extends State<Service> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 50,
-          toolbarHeight: 100,
-          title: Text('전체 페이지'),
-
-        ),
+        appBar: appBar(context),
+        endDrawer: drawer(context),
         body: _children[_currentIndex],
-
+        // body: Scaffold(
+        //   appBar: AppBar(
+        //     title: Text('dfi'),
+        //   ),
+        // ),
       ),
     );
   }
