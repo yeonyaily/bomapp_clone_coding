@@ -7,7 +7,6 @@ import 'package:bom_app_clone/views/info.dart';
 import 'package:bom_app_clone/views/manager.dart';
 import 'package:bom_app_clone/views/market.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -17,8 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setEnabledSystemUIOverlays([]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

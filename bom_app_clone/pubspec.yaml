@@ -17,6 +17,9 @@ dependencies:
   fluro: ^2.0.3
   get: ^4.1.4
   animated_icon_button: ^1.0.2
+  hovering: ^1.0.4
+  qr_flutter: ^4.0.0
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +33,4 @@ flutter:
     - assets/main-visual-2020-1.png
     - assets/main-visual-2020-2.png
     - assets/main-visual-2020-3.png
+    - assets/
