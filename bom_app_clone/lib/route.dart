@@ -3,15 +3,13 @@
 // import 'package:flutter/material.dart';
 //
 // class FRouter {
-//   static FluroRouter router = FluroRouter();
+//   static Router router = Router();
 //
 //   static const String home = '/home';
 //
-//   static Handler _HomeHandler = Handler(
-//       handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-//           Home());
-//
-//   static void setupRouter() {
-//     router.define(home, handler: _HomeHandler, transitionType: TransitionType.fadeIn);
+//   static void configureRoutes(Router router) {
+//     router.define(page_a, handler: aHandler);
+//     router.define(page_b, handler: bHandler);
+//     router.notFoundHandler =emptyHandler; //Empty page
 //   }
 // }

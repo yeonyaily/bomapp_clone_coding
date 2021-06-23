@@ -13,5 +13,25 @@ appBar(BuildContext context) {
         style: TextStyle(color: Colors.white, fontSize: 30),
       ),
     ),
+    actions: [
+      Builder(
+        builder: (context) =>
+            FloatingActionButton(
+              child: Icon(Icons.menu),
+              hoverColor : Colors.blue,
+              foregroundColor: Colors.white,
+              shape:Border.all(width: 1,color: Colors.white),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+        //     IconButton(
+        //   icon: new Icon(Icons.menu),
+        //   onPressed: () {
+        //     Scaffold.of(context).openEndDrawer();
+        //   },
+        // ),
+      ),
+    ],
   );
 }

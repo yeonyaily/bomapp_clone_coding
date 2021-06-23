@@ -1,4 +1,5 @@
 import 'package:bom_app_clone/widget/addBar.dart';
+import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'views/Home.dart';
@@ -9,9 +10,9 @@ import 'views/health.dart';
 import 'views/info.dart';
 import 'views/manager.dart';
 import 'views/market.dart';
-import 'package:bom_app_clone/widget/addBar.dart';
 
 class Service extends StatefulWidget {
+
   @override
   _ServiceState createState() => _ServiceState();
 }
@@ -24,8 +25,10 @@ class _ServiceState extends State<Service> {
   void _upScroll() {
     setState(() {
       if(_currentIndex == _children.length-1){}
-      else
+      else {
         _currentIndex = _currentIndex + 1;
+        Navigator.pushNamed(context, '/manager');
+      }
     });
   }
 
@@ -60,7 +63,13 @@ class _ServiceState extends State<Service> {
       },
       child: Scaffold(
         appBar: appBar(context),
+        endDrawer: drawer(context),
         body: _children[_currentIndex],
+        // body: Scaffold(
+        //   appBar: AppBar(
+        //     title: Text('dfi'),
+        //   ),
+        // ),
       ),
     );
   }
