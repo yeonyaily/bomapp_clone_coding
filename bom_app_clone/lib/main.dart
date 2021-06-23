@@ -8,6 +8,7 @@ import 'package:bom_app_clone/views/manager.dart';
 import 'package:bom_app_clone/views/market.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:bom_app_clone/constants/size.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

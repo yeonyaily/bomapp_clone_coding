@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
 class MediaSize{
-  late Size size;
+  // ignore: non_constant_identifier_names
+  static double dev_width = 0;
 }
