@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/gestures.dart';
@@ -49,29 +48,8 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: appBar(context),
         endDrawer: drawer(context),
-        body: Container(
-          child: Row(
-            children: [
-              AnimatedCrossFade(
-                firstChild: phone_images(0),
-                secondChild: phone_images(1),
-                duration: const Duration(seconds:3),
-                crossFadeState: _crossFadeState,
-              )
-            ],
-          ),
-        )
-
+        body: Text('Home'),
       ),
     );
   }
-
-  Widget phone_images (int index) {
-    return AspectRatio(
-      aspectRatio: 2/5,
-      child: Image.asset(imagesList[index]),
-    );
-  }
 }
-
-
