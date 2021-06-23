@@ -18,11 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.blue,
       ),
-      home: Service(),
+      home: Home(),
       defaultTransition: Transition.native,
       getPages: [
         GetPage(name: '/main', page: () => Home()),
