@@ -87,14 +87,6 @@ class _HomeState extends State<Home> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(
-                              '보맵에서',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 43,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ],
                         )
                     :
@@ -102,14 +94,6 @@ class _HomeState extends State<Home> {
                       children: [
                         Column(
                           children: [
-                            Text(
-                              '보맵에서',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 43,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                             Text(
                               '보맵에서',
                               style: TextStyle(
