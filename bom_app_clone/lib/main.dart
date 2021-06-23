@@ -8,7 +8,6 @@ import 'package:bom_app_clone/views/manager.dart';
 import 'package:bom_app_clone/views/market.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'service.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,14 +26,14 @@ class MyApp extends StatelessWidget {
       home: Home(),
       defaultTransition: Transition.native,
       getPages: [
-        GetPage(name: '/main', page: () => Home()),
-        GetPage(name: '/manager', page: () => Manager()),
-        GetPage(name: '/check', page: () => Check()),
-        GetPage(name: '/health', page: () => Health()),
-        GetPage(name: '/chat', page: () => Chat()),
-        GetPage(name: '/market', page: () => Market()),
-        GetPage(name: '/request', page: () => Charge()),
-        GetPage(name: '/info', page: () => Info()),
+        GetPage(name: '/main', page: () => Home(), transition: Transition.noTransition),
+        GetPage(name: '/manager', page: () => Manager(), transition: Transition.noTransition),
+        GetPage(name: '/check', page: () => Check(), transition: Transition.noTransition),
+        GetPage(name: '/health', page: () => Health(), transition: Transition.noTransition),
+        GetPage(name: '/chat', page: () => Chat(), transition: Transition.noTransition),
+        GetPage(name: '/market', page: () => Market(), transition: Transition.noTransition),
+        GetPage(name: '/request', page: () => Charge(), transition: Transition.noTransition),
+        GetPage(name: '/info', page: () => Info(), transition: Transition.noTransition),
       ],
     );
   }

@@ -1,10 +1,9 @@
-import 'package:bom_app_clone/views/manager.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'home.dart';
+import '../pointerSignal.dart';
 
 class Check extends StatefulWidget {
   @override
@@ -12,20 +11,13 @@ class Check extends StatefulWidget {
 }
 
 class _CheckState extends State<Check> {
-  int radioVal = 0;
 
   @override
   Widget build(BuildContext context) {
+    Scroll scroll = new Scroll();
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
-        if (event is PointerScrollEvent) {
-          if (event.scrollDelta.dy > 0) {
-            // Get.to(());
-          }
-          else{
-            Get.to(Manager());
-          }
-        }
+        scroll.pointerSignal(event, Get.arguments);
       },
       child: Scaffold(
         appBar: appBar(context),

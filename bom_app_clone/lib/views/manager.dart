@@ -6,21 +6,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../pointerSignal.dart';
+
 
 class Manager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Scroll scroll = new Scroll();
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
-        if (event is PointerScrollEvent) {
-          if (event.scrollDelta.dy > 0) {
-            Get.to(Check());
-          }
-          else{
-            Get.to(Home());
-          }
-        }
+          scroll.pointerSignal(event, Get.arguments);
       },
       child: Scaffold(
         appBar: appBar(context),

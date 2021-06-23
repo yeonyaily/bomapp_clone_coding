@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 appBar(BuildContext context) {
   return AppBar(
@@ -7,7 +8,9 @@ appBar(BuildContext context) {
     backgroundColor: Colors.transparent,
     shadowColor: Colors.transparent,
     leading: TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Get.toNamed('/main');
+      },
       child: Text(
         'BOMAPP',
         style: TextStyle(color: Colors.white, fontSize: 30),

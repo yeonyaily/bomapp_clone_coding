@@ -1,9 +1,9 @@
+import 'package:bom_app_clone/pointerSignal.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'manager.dart';
 
 
 class Home extends StatefulWidget {
@@ -12,16 +12,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
+  Scroll scroll = new Scroll();
   @override
   Widget build(BuildContext context) {
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
-        if (event is PointerScrollEvent) {
-          if (event.scrollDelta.dy > 0) {
-            Get.to(Manager());
-          }
-        }
+        scroll.pointerSignal(event, 0);
       },
       child: Scaffold(
         appBar: appBar(context),
