@@ -51,6 +51,8 @@ flutter:
     - assets/main-visual-2020-1.png
     - assets/main-visual-2020-2.png
     - assets/main-visual-2020-3.png
+    - assets/app_store_qr.png
+    - assets/google_play_qr.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

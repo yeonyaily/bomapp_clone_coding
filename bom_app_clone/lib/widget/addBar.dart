@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 appBar(BuildContext context) {
   return AppBar(
-    toolbarHeight: 80,
+    toolbarHeight: 120,
     leadingWidth: 200,
     backgroundColor: Colors.transparent,
     shadowColor: Colors.transparent,
@@ -17,7 +17,6 @@ appBar(BuildContext context) {
       ),
     ),
     actions: [
-
       Builder(
         builder: (context) =>
             FloatingActionButton(
