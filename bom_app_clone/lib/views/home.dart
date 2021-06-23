@@ -45,8 +45,28 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: appBar(context),
         endDrawer: drawer(context),
-        body: Text('Home'),
+        body: Container(
+          child: Row(
+            children: [
+              AnimatedCrossFade(
+                firstChild: phone_images(0),
+                secondChild: phone_images(1),
+                duration: const Duration(seconds:3),
+                crossFadeState: _crossFadeState,
+              )
+            ],
+          ),
+        )
+
       ),
     );
   }
+
+  Widget phone_images (int index) {
+    return AspectRatio(
+      aspectRatio: 2/5,
+      child: Image.asset(imagesList[index]),
+    );
+  }
+
 }
