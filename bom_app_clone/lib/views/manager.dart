@@ -8,6 +8,13 @@ class Manager extends StatelessWidget {
       appBar: AppBar(
         title: Text('manager'),
       ),
+      body: Container(
+        child: Row(
+          children: [
+            Text('01 ' + '/ 06'),
+          ],
+        ),
+      ),
     );
   }
 }

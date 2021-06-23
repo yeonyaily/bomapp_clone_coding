@@ -14,6 +14,13 @@ class _CheckState extends State<Check> {
       appBar: AppBar(
         title: Text('manager'),
       ),
+      body: Container(
+        child: Row(
+          children: [
+            Text('02 ' + '/ 06'),
+          ],
+        ),
+      ),
     );
   }
 }
