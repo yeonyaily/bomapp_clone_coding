@@ -1,5 +1,6 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'button.dart';
 
@@ -9,6 +10,7 @@ drawer(BuildContext context) {
     width: 400,
     color: Colors.black,
     child: Drawer(
+
       child: ListView(
         padding: EdgeInsets.only(left: 75),
         children: <Widget>[
@@ -58,6 +60,8 @@ drawer(BuildContext context) {
             style: TextStyle(
                 color: Colors.white, fontSize: 23, fontWeight: FontWeight.w600),
           ),
+
+          // ------------------------------------------------------------------------------------
           Row(
             children: [
               TextButton(
@@ -75,33 +79,85 @@ drawer(BuildContext context) {
                   Icons.keyboard_arrow_up, size: 40,
                 ),
               ),
-              // InkWell(
-              //   // onTap: (){},
-              //   onHover: (hovering) {
-              //     if(hovering)
-              //       print("Hover!");
-              //     print(hovering);
-              //     print("hover!");
-              //     Scaffold.of(context).setState(() {
-              //       ishover = hovering;
-              //     });
-              //   },
-              //   child: IconButton(
-              //     icon: ColorFiltered(
-              //       colorFilter: ColorFilter.mode(
-              //           ishover ? Colors.white : Colors.grey, BlendMode.srcIn),
-              //       child: Image.asset(
-              //         'assets/instagram.png',
-              //         scale: 2,
-              //       ),
-              //     ),
-              //     onPressed: () {},
-              //   ),
-              // ),
+
+              // clicks
+              GetBuilder<CounterController>(
+                init: CounterController(),
+                builder: (_) => Text(
+                  'clicks: ${_.count}',
+                  style: TextStyle(color: Colors.white),
+                )
+              ),
+
+              // isHover : false or true?
+              GetBuilder<HoverController>(
+                init: HoverController(),
+                builder: (_) => Text(
+                  _.isHover.toString(),
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+
+              /*
+              GetBuilder<HoverController>(
+                init: HoverController(),
+                builder: (_) => InkWell(
+                  onTap: (){},
+                  onHover: (hovering) {
+                    print(hovering);
+                    (hovering)
+                      ? _.isHover.value = hovering
+                        : _.isHover.value = false;
+
+                    //_.isHover.value = hovering;
+                  },
+                  child: (_.isHover.value)
+                    ? IconButton(
+                    onPressed: (){},
+                    icon: ColorFiltered(
+                        colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                      child: Image.asset(
+                        'assets/instagram.png',
+                        scale: 1,
+                      ),
+                    )
+                  ) : IconButton(
+                      onPressed: (){},
+                      icon: ColorFiltered(
+                        colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        child: Image.asset(
+                          'assets/instagram.png',
+                          scale: 1,
+                        ),
+                      )
+                  )
+                )
+              ),
+
+
+               */
+
+
+
             ],
-          )
+          ),
         ],
       ),
     ),
   );
+}
+
+class HoverController extends GetxController{
+  RxBool isHover = false.obs;
+
+  void hover() {
+    isHover.toggle();
+  }
+
+}
+class CounterController extends GetxController{
+  RxInt count=0.obs;
+  void increment(){
+    count++;
+  }
 }
