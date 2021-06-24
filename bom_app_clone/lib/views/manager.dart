@@ -2,10 +2,11 @@ import 'package:bom_app_clone/views/check.dart';
 import 'package:bom_app_clone/views/home.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../service/pointerSignal.dart';
 
 
@@ -19,7 +20,7 @@ class Manager extends StatelessWidget {
     Widget webView() {
       return Padding(
           padding: EdgeInsets.all(8),
-          child: Column(
+          child: ListView(
             children: [
               SizedBox(height: height/6,),
               Row(
@@ -29,44 +30,44 @@ class Manager extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //Text('미디어쿼리너비: ' + width.toString()),
-                      //Text('미디어쿼리높이: ' + height.toString()),
+                      Text('미디어쿼리너비: ' + width.toString()),
+                      Text('미디어쿼리높이: ' + height.toString()),
                       Text('보험 조회 & 관리',
                         style: TextStyle(
-                          fontSize: height/44,
+                          fontSize: height/40,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: height/30,),
                       Text('보험,',
                         style: TextStyle(
-                          fontSize: height/20,
+                          fontSize: height/18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text('한 눈에 모아보세요',
                         style: TextStyle(
-                          fontSize: height/20,
+                          fontSize: height/18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: height/50,),
                       Text('내 모든 보험은 물론 내 가족의 보험,',
                         style: TextStyle(
-                            fontSize: height/52,
+                            fontSize: height/48,
                             color: Colors.black54
                         ),
                       ),
                       Text('우리동네 보험까지 한 눈에 확인할 수 있어요.',
                         style: TextStyle(
-                          fontSize: height/52,
+                          fontSize: height/48,
                           color: Colors.black54,
                         ),
                       ),
                       SizedBox(height: height/40,),
                       Text('우리동네보험 찾기', style: TextStyle(
                         color: Colors.blueAccent,
-                        fontSize: height/50,
+                        fontSize: height/46,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                       ),
@@ -74,12 +75,15 @@ class Manager extends StatelessWidget {
                       SizedBox(height: height/12,),
                     ],
                   ),
-                  SizedBox(width: 150,),
+                  SizedBox(
+                    width: (width < 1100)?
+                    (width / 14) : 120,
+                  ), // space between texts and phone image.
                   Container(
                     child: Image.asset(
                       'main-visual-2020-manager.png',
-                      width: 300,
-                      height: 300,
+                      width: 400,
+                      height: 400,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -106,9 +110,10 @@ class Manager extends StatelessWidget {
 
     Widget mobileView() {
       return Padding(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +175,8 @@ class Manager extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+
           ],
         ),
       );
@@ -185,8 +191,19 @@ class Manager extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: appBar(context),
         endDrawer: drawer(context),
+        bottomNavigationBar:
+        (width < 850) ?
+        BottomAppBar(
+          child: Container(
+            height: 60,
+            child: TextButton(
+              child: Text('BOMAPP 다운로드'),
+              onPressed: () => launch('https://www.bomapp.co.kr/'),
+            ),
+          ),
+        ) : null,
         body:
-        (width < 1000) ?
+        (width < 850) ?
             mobileView() : webView(),
 
 
