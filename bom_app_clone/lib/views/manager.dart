@@ -85,7 +85,6 @@ class Manager extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-
                 ],
               ),
               Row(
@@ -107,6 +106,7 @@ class Manager extends StatelessWidget {
     }
 
     Widget mobileView() {
+
       return Padding(
         padding: EdgeInsets.all(16),
         child: Column(

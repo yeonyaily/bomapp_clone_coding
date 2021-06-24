@@ -2,16 +2,12 @@ import 'dart:async';
 import 'package:bom_app_clone/service/pointerSignal.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
-<<<<<<< HEAD
-=======
 import 'package:bom_app_clone/widget/image.dart';
-import 'package:hovering/hovering.dart';
->>>>>>> 1d3ad913df7bfeebf4551fee84a00b57feae34ed
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -68,272 +64,258 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Scroll scroll = new Scroll();
-    MyImage myImage = new MyImage();
-    final sizes = MediaQuery.of(context).size.width;
+    final widths = MediaQuery.of(context).size.width;
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
         scroll.pointerSignal(event, 0);
       },
-      child: Scaffold(
-<<<<<<< HEAD
-          appBar: appBar(context),
-          endDrawer: drawer(context),
-          body: Container(
-            child: sizes < 1000
-                ? Text("hello")
-                :Row(
+      child: widths < 1000 ? mobileView(context) : webView(context),
+    );
+  }
+
+  Widget mobileView(BuildContext context){
+    final widths = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    MyImage myImage = new MyImage();
+
+    return Scaffold(
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 60,
+            child: TextButton(
+              child: Text('BOMAPP 다운로드'),
+              onPressed: () => launch('https://www.bomapp.co.kr/'),
+            ),
+          ),
+        ),
+      body: ListView(
+        children: [
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: widths/24,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '보험을 나에게 꼭📌맞게',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '보맵에서',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 40.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    child: Container(
+                      height: 60,
+                      width: 160,
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          RotateAnimatedText('모아보고!'),
+                          RotateAnimatedText('골라보고!'),
+                          RotateAnimatedText('살펴보고!'),
+                        ],
+                        isRepeatingAnimation: true,
+                        repeatForever: true,
+                        pause: const Duration(milliseconds: 100),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: height / 7),
+          SizedBox(
+            width: height < 800 ? widths / 1.4 : widths / 1.1,
+            height: height < 800 ? height / 1.4 : height / 1.1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedCrossFade(
-                  firstChild: phone_images(0),
-                  secondChild: phone_images(1),
+                  firstChild: myImage.phone_images(_index),
+                  secondChild: myImage.phone_images(_index2),
                   duration: const Duration(seconds:3),
                   crossFadeState: _crossFadeState,
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      width: 430,
-                      margin: EdgeInsets.only(left: 100, top: 100),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '보험을 나에게 꼭📌맞게',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-=======
+              ],
+            ),
+          ),
+        ],
+      )
+    );
+  }
+
+  Widget webView(BuildContext context){
+    final widths = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    MyImage myImage = new MyImage();
+    return Scaffold(
         appBar: appBar(context),
         endDrawer: drawer(context),
         body: Container(
-          child: sizes < 1000
-              ? Text("hello")
-              :Row(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AnimatedCrossFade(
-                firstChild: myImage.phone_images(_index),
-                secondChild: myImage.phone_images(_index2),
-                duration: const Duration(seconds:1),
-                crossFadeState: _crossFadeState,
+              SizedBox(
+                child: AnimatedCrossFade(
+                  firstChild: myImage.phone_images(_index),
+                  secondChild: myImage.phone_images(_index2),
+                  duration: const Duration(seconds:3),
+                  crossFadeState: _crossFadeState,
+                ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 100, top: 100),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '보험을 나에게 꼭📌맞게',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    ishover == false ?
-                        Column(
-                          children: [
-                            Text(
-                              '보맵에서',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 43,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        )
-                    :
-                    Stack(
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              '보맵에서',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 43,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+              Stack(
+                children: [
+                  Container(
+                    width: 430,
+                    margin: EdgeInsets.only(left: 100, top: height / 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '보험을 나에게 꼭📌맞게',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
-                        showQR(),
+                        Text(
+                          '보맵에서',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        DefaultTextStyle(
+                          style: const TextStyle(
+                            fontSize: 60.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          child: Container(
+                            height: 100,
+                            width: 240,
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                RotateAnimatedText('모아보고!'),
+                                RotateAnimatedText('골라보고!'),
+                                RotateAnimatedText('살펴보고!'),
+                              ],
+                              isRepeatingAnimation: true,
+                              repeatForever: true,
+                              pause: const Duration(milliseconds: 100),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    DefaultTextStyle(
-                      style: const TextStyle(
-                        fontSize: 43.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      child: Container(
-                        height: 70,
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            RotateAnimatedText('모아보고!'),
-                            RotateAnimatedText('골라보고!'),
-                            RotateAnimatedText('살펴보고!'),
-                          ],
-                          isRepeatingAnimation: true,
-                          repeatForever: true,
-                          pause: const Duration(milliseconds: 3000),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 100,),
-                    Row(
-                      children: [
-                        HoverWidget(
-                          hoverChild: SizedBox(
-                            width: 200,
-                            height: 50,
-                            child: ElevatedButton.icon(
-                              icon: SizedBox(
-                                width: 30,
-                                height: 25,
-                                child: new Image.asset(
-                                  'assets/apple.png',
-                                  color: Colors.lightBlue,
+                  ),
+                  Positioned(
+                    bottom: height / 5,
+                    left: 88,
+                    child: Container(
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () => null,
+                            onHover: (hovering) {
+                              setState(() => gisHovering = hovering);
+                            },
+                            child: SizedBox(
+                              width: 200,
+                              height: 50,
+                              child: ElevatedButton.icon(
+                                icon: SizedBox(
+                                  width: 30,
+                                  height: 25,
+                                  child: new Image.asset(
+                                    'assets/GooglePlay.png',
+                                    color: !gisHovering ? Colors.white : Colors.blueAccent,
+                                  ),
                                 ),
-                              ),
-                              label: Text(
-                                'App Store',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.lightBlue,
-                                  fontSize: 17,
+                                label: Text(
+                                  'Google Play',
+                                  style: TextStyle(
+                                    color: !gisHovering ? Colors.white : Colors.blueAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
                                 ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: !gisHovering ? Colors.lightBlue : Colors.white,
+                                  elevation: 0,
+                                  shadowColor: Colors.transparent,
+                                ),
+                                onPressed: () {},
                               ),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                                elevation: 0,
-                              ),
-                              onPressed: () {},
->>>>>>> 1d3ad913df7bfeebf4551fee84a00b57feae34ed
                             ),
                           ),
-                          Text(
-                            '보맵에서',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 43,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          DefaultTextStyle(
-                            style: const TextStyle(
-                              fontSize: 43.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            child: Container(
-                              height: 68,
-                              width: 175,
-                              child: AnimatedTextKit(
-                                animatedTexts: [
-                                  RotateAnimatedText('모아보고!'),
-                                  RotateAnimatedText('골라보고!'),
-                                  RotateAnimatedText('살펴보고!'),
-                                ],
-                                isRepeatingAnimation: true,
-                                repeatForever: true,
-                                pause: const Duration(milliseconds: 100),
+                          SizedBox(width: 20,),
+                          InkWell(
+                            onTap: () => null,
+                            onHover: (hovering) {
+                              setState(() => aisHovering = hovering);
+                            },
+                            child: SizedBox(
+                              width: 200,
+                              height: 50,
+                              child: ElevatedButton.icon(
+                                icon: SizedBox(
+                                  width: 30,
+                                  height: 25,
+                                  child: new Image.asset(
+                                    'assets/apple.png',
+                                    color: !aisHovering ? Colors.white : Colors.blueAccent,
+                                  ),
+                                ),
+                                label: Text(
+                                  'App Store',
+                                  style: TextStyle(
+                                    color: !aisHovering ? Colors.white : Colors.blueAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: !aisHovering ? Colors.lightBlue : Colors.white,
+                                  elevation: 0,
+                                  shadowColor: Colors.transparent,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Positioned(
-                      bottom: 140,
-                      left: 88,
-                      child: Container(
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: () => null,
-                              onHover: (hovering) {
-                                setState(() => gisHovering = hovering);
-                              },
-                              child: SizedBox(
-                                width: 200,
-                                height: 50,
-                                child: ElevatedButton.icon(
-                                  icon: SizedBox(
-                                    width: 30,
-                                    height: 25,
-                                    child: new Image.asset(
-                                      'assets/GooglePlay.png',
-                                      color: !gisHovering ? Colors.white : Colors.blueAccent,
-                                    ),
-                                  ),
-                                  label: Text(
-                                    'Google Play',
-                                    style: TextStyle(
-                                      color: !gisHovering ? Colors.white : Colors.blueAccent,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: !gisHovering ? Colors.lightBlue : Colors.white,
-                                    elevation: 0,
-                                    shadowColor: Colors.transparent,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 20,),
-                            InkWell(
-                              onTap: () => null,
-                              onHover: (hovering) {
-                                setState(() => aisHovering = hovering);
-                              },
-                              child: SizedBox(
-                                width: 200,
-                                height: 50,
-                                child: ElevatedButton.icon(
-                                  icon: SizedBox(
-                                    width: 30,
-                                    height: 25,
-                                    child: new Image.asset(
-                                      'assets/apple.png',
-                                      color: !aisHovering ? Colors.white : Colors.blueAccent,
-                                    ),
-                                  ),
-                                  label: Text(
-                                    'App Store',
-                                    style: TextStyle(
-                                      color: !aisHovering ? Colors.white : Colors.blueAccent,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: !aisHovering ? Colors.lightBlue : Colors.white,
-                                    elevation: 0,
-                                    shadowColor: Colors.transparent,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    aisHovering ?
-                        showAQR() : Container(),
-                    gisHovering ?
-                        showGQR() : Container(),
-                  ],
-                ),
-              ],
-            ),
-          )
-      ),
+                  ),
+                  aisHovering ?
+                  showAQR() : Container(),
+                  gisHovering ?
+                  showGQR() : Container(),
+                ],
+              ),
+            ],
+          ),
+        )
     );
   }
 
@@ -379,15 +361,4 @@ class _HomeState extends State<Home> {
       ),
     ),
   );
-<<<<<<< HEAD
-
-  Widget phone_images (int index) {
-    return AspectRatio(
-      aspectRatio: 2/5,
-      child: Image.asset(imagesList[index]),
-    );
-  }
 }
-=======
-}
->>>>>>> 1d3ad913df7bfeebf4551fee84a00b57feae34ed
