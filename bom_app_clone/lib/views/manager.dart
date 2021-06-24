@@ -1,5 +1,3 @@
-import 'package:bom_app_clone/views/check.dart';
-import 'package:bom_app_clone/views/home.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';

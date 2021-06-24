@@ -278,5 +278,4 @@ class _HomeState extends State<Home> {
       child: Image.asset(imagesList[index]),
     );
   }
-
 }
