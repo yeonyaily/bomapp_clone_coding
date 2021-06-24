@@ -71,6 +71,7 @@ class _HomeState extends State<Home> {
         scroll.pointerSignal(event, page);
       },
       child: Scaffold(
+        drawerScrimColor: Colors.white.withOpacity(0.7),
           appBar: appBar(context),
           endDrawer: drawer(context),
           body: Container(
