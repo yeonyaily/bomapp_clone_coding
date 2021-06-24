@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bom_app_clone/service/pointerSignal.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
+import 'package:bom_app_clone/widget/image.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
@@ -78,8 +79,8 @@ class _HomeState extends State<Home> {
                 :Row(
               children: [
                 AnimatedCrossFade(
-                  firstChild: phone_images(0),
-                  secondChild: phone_images(1),
+            firstChild: myImage.phone_images(_index),
+            secondChild: myImage.phone_images(_index2),
                   duration: const Duration(seconds:3),
                   crossFadeState: _crossFadeState,
                 ),
@@ -214,17 +215,15 @@ class _HomeState extends State<Home> {
                         showAQR() : Container(),
                     gisHovering ?
                         showGQR() : Container(),
-                    // ((aisHovering == true) && (gisHovering == false)) ||
-                    // ((aisHovering == false) && (gisHovering == true)) ?
-                    //     showQR() : Container()
                   ],
-                )
+                ),
               ],
             ),
           )
       ),
     );
   }
+
   showAQR() => Positioned(
     bottom: 240,
     right: 50,
@@ -267,3 +266,4 @@ class _HomeState extends State<Home> {
       ),
     ),
   );
+}
