@@ -60,28 +60,44 @@ drawer(BuildContext context) {
           ),
           Row(
             children: [
-              InkWell(
-                onHover: (hovering) {
-                  if(hovering)
-                    print("Hover!");
-                  print(hovering);
-                  print("hover!");
-                  Scaffold.of(context).setState(() {
-                    ishover = hovering;
-                  });
-                },
-                child: IconButton(
-                  icon: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        ishover ? Colors.white : Colors.grey, BlendMode.srcIn),
-                    child: Image.asset(
-                      'assets/instagram.png',
-                      scale: 2,
-                    ),
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered))
+                        return Colors.white;
+                      return Colors.grey;
+                    },
                   ),
-                  onPressed: () {},
+                ),
+                onPressed: () {},
+                child: Icon(
+                  Icons.keyboard_arrow_up, size: 40,
                 ),
               ),
+              // InkWell(
+              //   // onTap: (){},
+              //   onHover: (hovering) {
+              //     if(hovering)
+              //       print("Hover!");
+              //     print(hovering);
+              //     print("hover!");
+              //     Scaffold.of(context).setState(() {
+              //       ishover = hovering;
+              //     });
+              //   },
+              //   child: IconButton(
+              //     icon: ColorFiltered(
+              //       colorFilter: ColorFilter.mode(
+              //           ishover ? Colors.white : Colors.grey, BlendMode.srcIn),
+              //       child: Image.asset(
+              //         'assets/instagram.png',
+              //         scale: 2,
+              //       ),
+              //     ),
+              //     onPressed: () {},
+              //   ),
+              // ),
             ],
           )
         ],
