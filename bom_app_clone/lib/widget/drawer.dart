@@ -32,9 +32,9 @@ drawer(BuildContext context) {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  duration: const Duration(milliseconds: 0),
+                  duration: Duration(milliseconds: 1),
                   splashColor: Colors.transparent,
-                  icons: const <AnimatedIconItem>[
+                  icons: <AnimatedIconItem>[
                     AnimatedIconItem(
                       icon: Icon(Icons.clear, color: Colors.white),
                     ),
@@ -79,8 +79,29 @@ drawer(BuildContext context) {
                   Icons.keyboard_arrow_up, size: 40,
                 ),
               ),
+              IconButton(
+                  onPressed: (){},
+                  icon: ColorFiltered(
+                    colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                    child: Image.asset(
+                      'assets/instagram.png',
+                      scale: 1,
+                    ),
+                  )
+              ),
+              IconButton(
+                  onPressed: (){},
+                  icon: ColorFiltered(
+                    colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                    child: Image.asset(
+                      'assets/apple.png',
+                      scale: 1,
+                    ),
+                  )
+              )
 
-              // clicks
+
+              /*
               GetBuilder<CounterController>(
                 init: CounterController(),
                 builder: (_) => Text(
@@ -97,6 +118,8 @@ drawer(BuildContext context) {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
+
+               */
 
               /*
               GetBuilder<HoverController>(
@@ -136,7 +159,6 @@ drawer(BuildContext context) {
 
 
                */
-
 
 
             ],

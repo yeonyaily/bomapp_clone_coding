@@ -15,7 +15,7 @@ myStruct(BuildContext context, int page){
     },
     child: Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBar(context),
+      appBar: appBar(context, page),
       endDrawer: drawer(context),
       body: (width > 850)
           ? myBody(true, context, page)
