@@ -16,8 +16,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
+
   bool aisHovering = false;
   bool gisHovering = false;
+  int _index = 0;
+  int _index2 = 1;
 
   final List<String> imagesList = [
     'assets/main-visual-2020-1.png',
@@ -31,9 +34,36 @@ class _HomeState extends State<Home> {
 
     const oneSec = const Duration(seconds: 5);
     new Timer.periodic(oneSec, (Timer t) => setState(() {
-      (_crossFadeState == CrossFadeState.showFirst)?
-      _crossFadeState = CrossFadeState.showSecond :
-      _crossFadeState = CrossFadeState.showFirst;
+
+      if(_crossFadeState == CrossFadeState.showFirst){
+        if(_index==0){
+          _index2 = 1;
+          _crossFadeState = CrossFadeState.showSecond;
+        }
+        else if(_index==2){
+          _index2 = 0;
+          _crossFadeState = CrossFadeState.showSecond;
+        }
+        else{
+          _index2 = 2;
+          _crossFadeState = CrossFadeState.showSecond;          
+          _index = 0;
+        }
+      }
+      else{
+        if(_index2==1){
+          _index = 2;
+          _crossFadeState = CrossFadeState.showFirst;
+        }
+        else if(_index2==0){
+          _index = 1;
+          _crossFadeState = CrossFadeState.showFirst;
+        }
+        else{
+          _index = 0;
+          _crossFadeState = CrossFadeState.showFirst;
+        }
+      }
     }));
   }
 
@@ -190,11 +220,8 @@ class _HomeState extends State<Home> {
                         showAQR() : Container(),
                     gisHovering ?
                         showGQR() : Container(),
-                    // ((aisHovering == true) && (gisHovering == false)) ||
-                    // ((aisHovering == false) && (gisHovering == true)) ?
-                    //     showQR() : Container()
                   ],
-                )
+                ),
               ],
             ),
           )
