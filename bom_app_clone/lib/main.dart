@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.blueAccent,
+        canvasColor: Colors.black,
       ),
       home: Home(),
       defaultTransition: Transition.native,
