@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
               AnimatedCrossFade(
                 firstChild: phone_images(0),
                 secondChild: phone_images(1),
-                duration: const Duration(seconds:3),
+                duration: const Duration(seconds:1),
                 crossFadeState: _crossFadeState,
               ),
               Container(
