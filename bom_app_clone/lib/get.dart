@@ -1,10 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 
 class Controller extends GetxController{
-  int count = 0;
+  int duration = 0;
 
-  void increment(int index){
-    count = index;
+  change(time){
+    duration = time;
     update();
   }
 }
