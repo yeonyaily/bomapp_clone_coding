@@ -9,6 +9,7 @@ import 'package:bom_app_clone/views/market.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -21,9 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.blue,
-        canvasColor: Colors.black,
-
+        scaffoldBackgroundColor: Colors.blueAccent,
       ),
       home: Home(),
       defaultTransition: Transition.native,
