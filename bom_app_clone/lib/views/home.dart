@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
-
+  final page = 0;
   bool aisHovering = false;
   bool gisHovering = false;
   int _index = 0;
@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
     final widths = MediaQuery.of(context).size.width;
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
-        scroll.pointerSignal(event, 0);
+        scroll.pointerSignal(event, page);
       },
       child: widths < 1000 ? mobileView(context) : webView(context),
     );
@@ -148,8 +148,8 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedCrossFade(
-                  firstChild: myImage.phone_images(_index),
-                  secondChild: myImage.phone_images(_index2),
+                  firstChild: myImage.mainImage(_index),
+                  secondChild: myImage.mainImage(_index2),
                   duration: const Duration(seconds:3),
                   crossFadeState: _crossFadeState,
                 ),
@@ -174,8 +174,8 @@ class _HomeState extends State<Home> {
             children: [
               SizedBox(
                 child: AnimatedCrossFade(
-                  firstChild: myImage.phone_images(_index),
-                  secondChild: myImage.phone_images(_index2),
+                  firstChild: myImage.mainImage(_index),
+                  secondChild: myImage.mainImage(_index2),
                   duration: const Duration(seconds:3),
                   crossFadeState: _crossFadeState,
                 ),
