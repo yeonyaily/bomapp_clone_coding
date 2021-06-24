@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
     final height = MediaQuery.of(context).size.height;
     MyImage myImage = new MyImage();
     return Scaffold(
-        appBar: appBar(context),
+        appBar: appBar(context, page),
         endDrawer: drawer(context),
         body: Container(
           child: Row(
