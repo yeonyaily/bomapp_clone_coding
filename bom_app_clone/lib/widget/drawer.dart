@@ -32,9 +32,9 @@ drawer(BuildContext context) {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  duration: const Duration(milliseconds: 0),
+                  duration: Duration(milliseconds: 1),
                   splashColor: Colors.transparent,
-                  icons: const <AnimatedIconItem>[
+                  icons: <AnimatedIconItem>[
                     AnimatedIconItem(
                       icon: Icon(Icons.clear, color: Colors.white),
                     ),

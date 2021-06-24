@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
       },
       child: Scaffold(
         drawerScrimColor: Colors.white.withOpacity(0.7),
-          appBar: appBar(context),
+          appBar: appBar(context, page),
           endDrawer: drawer(context),
           body: Container(
             child: sizes < 1000
