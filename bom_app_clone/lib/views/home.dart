@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:bom_app_clone/service/pointerSignal.dart';
 import 'package:bom_app_clone/widget/addBar.dart';
 import 'package:bom_app_clone/widget/drawer.dart';
+import 'package:bom_app_clone/widget/image.dart';
 import 'package:hovering/hovering.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 
 
 class Home extends StatefulWidget {
@@ -21,12 +21,6 @@ class _HomeState extends State<Home> {
   bool chover = false;
   int _index = 0;
   int _index2 = 1;
-
-  final List<String> imagesList = [
-    'assets/main-visual-2020-1.png',
-    'assets/main-visual-2020-2.png',
-    'assets/main-visual-2020-3.png',
-  ];
 
   @override
   void initState() {
@@ -71,6 +65,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Scroll scroll = new Scroll();
+    MyImage myImage = new MyImage();
     final sizes = MediaQuery.of(context).size.width;
     return Listener(
       onPointerSignal: (PointerSignalEvent event) {
@@ -85,8 +80,8 @@ class _HomeState extends State<Home> {
               :Row(
             children: [
               AnimatedCrossFade(
-                firstChild: phone_images(_index),
-                secondChild: phone_images(_index2),
+                firstChild: myImage.phone_images(_index),
+                secondChild: myImage.phone_images(_index2),
                 duration: const Duration(seconds:1),
                 crossFadeState: _crossFadeState,
               ),
@@ -301,12 +296,4 @@ class _HomeState extends State<Home> {
         size: 200,
       ),
   );
-
-  Widget phone_images (int index) {
-    return AspectRatio(
-      aspectRatio: 2/5,
-      child: Image.asset(imagesList[index]),
-    );
-  }
-
 }
