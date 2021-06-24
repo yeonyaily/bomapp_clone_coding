@@ -31,7 +31,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/main-visual-2020-1.png
-    - assets/main-visual-2020-2.png
-    - assets/main-visual-2020-3.png
+#    - assets/main-visual-2020-1.png
+#    - assets/main-visual-2020-2.png
+#    - assets/main-visual-2020-3.png
     - assets/
