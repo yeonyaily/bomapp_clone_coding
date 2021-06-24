@@ -1,10 +1,5 @@
-import 'package:bom_app_clone/views/charge.dart';
-import 'package:bom_app_clone/views/chat.dart';
-import 'package:bom_app_clone/views/check.dart';
-import 'package:bom_app_clone/views/health.dart';
 import 'package:bom_app_clone/views/home.dart';
 import 'package:bom_app_clone/views/pages.dart';
-import 'package:bom_app_clone/views/market.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
