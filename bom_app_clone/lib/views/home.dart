@@ -311,6 +311,11 @@ class _HomeState extends State<Home> {
                   showAQR() : Container(),
                   gisHovering ?
                   showGQR() : Container(),
+                  Positioned(
+                    bottom: height / 20,
+                    left: 50,
+                    child: Icon(Icons.arrow_downward_sharp, color: Colors.white, size: 100,),
+                  ),
                 ],
               ),
             ],
