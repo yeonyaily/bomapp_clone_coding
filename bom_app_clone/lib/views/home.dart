@@ -184,6 +184,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Container(
                     width: 430,
+                    //TODO: Height 을 줘야하나..?
                     margin: EdgeInsets.only(left: 100, top: height / 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
