@@ -27,13 +27,12 @@ Widget myBody(bool isBig, BuildContext context, int page) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('미디어쿼리너비: ' + width.toString()),
-                Text('미디어쿼리높이: ' + height.toString()),
                 Text(
                   myText.header[page],
                   style: TextStyle(
                     fontSize: isBig ? height / 40 : 10,
                     fontWeight: FontWeight.bold,
+                    color: const Color(0xff3372dd),
                   ),
                 ),
                 SizedBox(
