@@ -8,7 +8,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:line_icons/line_icons.dart';
 
 
 class Home extends StatefulWidget {
@@ -81,7 +80,8 @@ class _HomeState extends State<Home> {
                 child: Container(
                   height: 60,
                   child: TextButton(
-                    child: Text('BOMAPP 다운로드',
+                    child: Text(
+                      'BOMAPP 다운로드',
                       style: TextStyle(
                         fontFamily: "Nanum",
                         fontWeight: FontWeight.w800,
