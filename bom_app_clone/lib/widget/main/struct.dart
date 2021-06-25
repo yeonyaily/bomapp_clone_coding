@@ -6,31 +6,36 @@ import 'addBar.dart';
 import 'body.dart';
 import 'drawer.dart';
 
-myStruct(BuildContext context, int page){
+myStruct(BuildContext context, int page) {
   late double width = MediaQuery.of(context).size.width;
   Scroll scroll = new Scroll();
   return Listener(
     onPointerSignal: (PointerSignalEvent event) {
       scroll.pointerSignal(event, page);
     },
-    child: Scaffold(
-      backgroundColor: Colors.white,
-      appBar: appBar(context, page),
-      endDrawer: drawer(context),
-      body: (width > 850)
-          ? myBody(true, context, page)
-          : myBody(false, context, page),
-      bottomNavigationBar: (width < 850)
-          ? BottomAppBar(
-        child: Container(
-          height: 60,
-          child: TextButton(
-            child: Text('BOMAPP 다운로드'),
-            onPressed: () => launch('https://www.bomapp.co.kr/'),
-          ),
+    child: Stack(children: [
+      Scaffold(
+        backgroundColor: Colors.white,
+        // appBar: appBar(context, page),
+        endDrawer: drawer(context),
+        body: Stack(
+          children: [
+            myBody((width > 850) ? true : false, context, page),
+            appBar(context, page, (width > 850) ? true : false)
+          ],
         ),
-      )
-          : null,
-    ),
+        bottomNavigationBar: (width < 850)
+            ? BottomAppBar(
+                child: Container(
+                  height: 60,
+                  child: TextButton(
+                    child: Text('BOMAPP 다운로드'),
+                    onPressed: () => launch('https://www.bomapp.co.kr/'),
+                  ),
+                ),
+              )
+            : null,
+      ),
+    ]),
   );
 }

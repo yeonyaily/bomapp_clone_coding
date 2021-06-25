@@ -63,13 +63,17 @@ class _HomeState extends State<Home> {
     Scroll scroll = new Scroll();
     final widths = MediaQuery.of(context).size.width;
     return Listener(
-      onPointerSignal: (PointerSignalEvent event) {
-        scroll.pointerSignal(event, page);
-      },
+    onPointerSignal: (PointerSignalEvent event) {
+    scroll.pointerSignal(event, page);
+    },
       child: Scaffold(
-        appBar: widths < 1000 ? null : appBar(context, page),
+        // appBar: widths < 1000 ? null : appBar(context, page),
         endDrawer: drawer(context),
-        body: widths < 1000 ? mobileView(context) : webView(context),
+        body: widths < 1000
+            ? mobileView(context)
+            : Stack(
+                children: [webView(context), appBar(context, page, true)],
+              ),
         bottomNavigationBar: widths < 1000
             ? BottomAppBar(
                 child: Container(
