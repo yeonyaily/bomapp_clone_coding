@@ -8,7 +8,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:line_icons/line_icons.dart';
 
 
 class Home extends StatefulWidget {
@@ -92,7 +91,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 child: Container(
                   height: 60,
                   child: TextButton(
-                    child: Text('BOMAPP 다운로드',
+                    child: Text(
+                      'BOMAPP 다운로드',
                       style: TextStyle(
                         fontFamily: "Nanum",
                         fontWeight: FontWeight.w800,
@@ -292,7 +292,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: !gisHovering ? Colors.lightBlue : Colors.white,
+                              primary: !gisHovering ? Color(0xff6d96e5) : Colors.white,
                               elevation: 0,
                               shadowColor: Colors.transparent,
                             ),
@@ -328,7 +328,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: !aisHovering ? Colors.lightBlue : Colors.white,
+                              primary: !aisHovering ? Color(0xff6d96e5) : Colors.white,
                               elevation: 0,
                               shadowColor: Colors.transparent,
                             ),
