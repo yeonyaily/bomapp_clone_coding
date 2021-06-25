@@ -281,7 +281,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: !gisHovering ? Colors.lightBlue : Colors.white,
+                              primary: !gisHovering ? Color(0xff6d96e5) : Colors.white,
                               elevation: 0,
                               shadowColor: Colors.transparent,
                             ),
@@ -317,7 +317,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: !aisHovering ? Colors.lightBlue : Colors.white,
+                              primary: !aisHovering ? Color(0xff6d96e5) : Colors.white,
                               elevation: 0,
                               shadowColor: Colors.transparent,
                             ),
