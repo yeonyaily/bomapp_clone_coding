@@ -1,6 +1,5 @@
-import 'package:bom_app_clone/get.dart';
 import 'package:bom_app_clone/service/time.dart';
-import 'package:bom_app_clone/widget/text.dart';
+import 'package:bom_app_clone/widget/sub/text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 

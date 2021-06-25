@@ -1,5 +1,5 @@
-import 'package:bom_app_clone/widget/image.dart';
-import 'package:bom_app_clone/widget/text.dart';
+import 'package:bom_app_clone/widget/sub/image.dart';
+import 'package:bom_app_clone/widget/sub/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
