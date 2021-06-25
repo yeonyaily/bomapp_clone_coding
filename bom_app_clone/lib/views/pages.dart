@@ -1,4 +1,4 @@
-import 'package:bom_app_clone/widget/struct.dart';
+import 'package:bom_app_clone/widget/main/struct.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

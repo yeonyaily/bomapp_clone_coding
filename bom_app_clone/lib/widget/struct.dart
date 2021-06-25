@@ -3,8 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'addBar.dart';
-import 'body.dart';
-import 'drawer.dart';
+import 'main/body.dart';
+import 'main/drawer.dart';
 
 myStruct(BuildContext context, int page){
   late double width = MediaQuery.of(context).size.width;

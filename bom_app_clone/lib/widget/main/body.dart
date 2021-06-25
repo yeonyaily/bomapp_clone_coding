@@ -1,7 +1,8 @@
-import 'package:bom_app_clone/widget/image.dart';
-import 'package:bom_app_clone/widget/text.dart';
+import 'package:bom_app_clone/widget/sub/image.dart';
+import 'package:bom_app_clone/widget/sub/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 Widget myBody(bool isBig, BuildContext context, int page) {
   MyText myText = new MyText();
@@ -26,8 +27,6 @@ Widget myBody(bool isBig, BuildContext context, int page) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('미디어쿼리너비: ' + width.toString()),
-                Text('미디어쿼리높이: ' + height.toString()),
                 Text(
                   myText.header[page],
                   style: TextStyle(
@@ -95,8 +94,8 @@ Widget myBody(bool isBig, BuildContext context, int page) {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("0${page}"),
-                  Text("/06"),
+                  Text("0${page}", style: TextStyle(fontSize: 30),),
+                  Text(" / 06", style: TextStyle(fontSize: 30, color: Colors.grey[350]),),
                   TextButton(
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -111,8 +110,8 @@ Widget myBody(bool isBig, BuildContext context, int page) {
                       Get.toNamed(myText.pageName[page - 1], arguments: page);
                     },
                     child: Icon(
-                      Icons.keyboard_arrow_up,
-                      size: 40,
+                      LineIcons.values['angleUp'],
+                      size: 30,
                     ),
                   ),
                   TextButton(
@@ -126,14 +125,14 @@ Widget myBody(bool isBig, BuildContext context, int page) {
                       ),
                     ),
                     onPressed: () {
-                      page == myText.pageName.length - 2
+                      page == myText.pageName.length - 1
                           ? null
                           : Get.toNamed(myText.pageName[page + 1],
                               arguments: page);
                     },
                     child: Icon(
-                      Icons.keyboard_arrow_down,
-                      size: 40,
+                      LineIcons.values['angleDown'],
+                      size: 30,
                     ),
                   ),
                 ],
