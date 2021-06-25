@@ -16,13 +16,24 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
   final page = 0;
   bool aisHovering = false;
   bool gisHovering = false;
   int _index = 0;
   int _index2 = 1;
+  late final AnimationController _controller = AnimationController(
+  duration: const Duration(seconds: 2),
+  vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+  begin: Offset.zero,
+  end: const Offset(0.0, 0.5),
+  ).animate(CurvedAnimation(
+  parent: _controller,
+  curve: Curves.ease,
+  ));
 
   @override
   void initState() {
@@ -333,6 +344,18 @@ class _HomeState extends State<Home> {
               showAQR(height) : Container(),
               gisHovering ?
               showGQR(height) : Container(),
+              Positioned(
+                left: 80,
+                bottom: 50,
+                child: SlideTransition(
+                  position: _offsetAnimation,
+                  child: Icon(
+                    LineIcons.values['arrowDown'],
+                    color: Colors.white,
+                    size: 60,
+                  ),
+                ),
+              )
             ],
           ),
         ],
