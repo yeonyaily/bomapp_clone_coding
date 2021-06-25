@@ -32,6 +32,7 @@ Widget myBody(bool isBig, BuildContext context, int page) {
                   style: TextStyle(
                     fontSize: isBig ? height / 40 : 10,
                     fontWeight: FontWeight.bold,
+                    color: const Color(0xff3372dd),
                   ),
                 ),
                 SizedBox(

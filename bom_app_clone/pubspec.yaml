@@ -11,8 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
   cupertino_icons: ^1.0.2
   fluro: ^2.0.3
   get: ^4.1.4
@@ -37,10 +35,11 @@ flutter:
 #    - assets/main-visual-2020-2.png
 #    - assets/main-visual-2020-3.png
     - assets/
-  #fonts:
-   # - family: Nanum
-    #  fonts:
-     #   - asset: assets/fonts/NanumSquare_acEB.ttf
-      #  - asset: assets/fonts/NanumSquare_acB.ttf
-       # - asset: assets/fonts/NanumSquare_acR.ttf
-        #- asset: assets/fonts/NanumSquare_acL.ttf
+
+  fonts:
+    - family: Nanum
+      fonts:
+        - asset: assets/fonts/NanumSquare_acEB.ttf
+        - asset: assets/fonts/NanumSquare_acB.ttf
+        - asset: assets/fonts/NanumSquare_acR.ttf
+        - asset: assets/fonts/NanumSquare_acL.ttf

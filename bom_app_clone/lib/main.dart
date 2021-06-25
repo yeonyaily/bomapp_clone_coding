@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
       home: Home(),
       defaultTransition: Transition.native,
       getPages: [
-        GetPage(name: '/main', page: () => Home(), transition: Transition.downToUp),
-        GetPage(name: '/manager', page: () => Manager(), transition: Transition.downToUp),
-        GetPage(name: '/check', page: () => Check(), transition: Transition.downToUp),
+        GetPage(name: '/main', page: () => Home(), transition: Transition.noTransition),
+        GetPage(name: '/manager', page: () => Manager(), transition: Transition.noTransition),
+        GetPage(name: '/check', page: () => Check(), transition: Transition.noTransition),
         GetPage(name: '/health', page: () => Health(), transition: Transition.noTransition),
         GetPage(name: '/chat', page: () => Chat(), transition: Transition.noTransition),
         GetPage(name: '/market', page: () => Market(), transition: Transition.noTransition),

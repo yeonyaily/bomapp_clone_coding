@@ -1,4 +1,6 @@
 class MediaSize{
   // ignore: non_constant_identifier_names
-  static double dev_width = 0;
+  final dev_width = 0;
+  // ignore: non_constant_identifier_names
+  final dev_height = 0;
 }
