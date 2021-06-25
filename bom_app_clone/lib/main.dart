@@ -2,7 +2,6 @@ import 'package:bom_app_clone/views/home.dart';
 import 'package:bom_app_clone/views/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:page_transition/page_transition.dart';
 
 
 void main() {
@@ -21,18 +20,16 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.black,
       ),
       home: Home(),
-      defaultTransition: Transition.downToUp,
-      transitionDuration: Duration(seconds: 1),
+      defaultTransition: Transition.native,
       getPages: [
-        GetPage(name: '/main', page: () => Home(), ),
-        GetPage(name: '/manager', page: () => Manager(), ),
-        GetPage(name: '/check', page: () => Check(), ),
-        GetPage(name: '/health', page: () => Health(), ),
-        GetPage(name: '/chat', page: () => Chat(), ),
-        GetPage(name: '/market', page: () => Market(), ),
-        GetPage(name: '/request', page: () => Charge(), ),
+        GetPage(name: '/main', page: () => Home(), transition: Transition.downToUp),
+        GetPage(name: '/manager', page: () => Manager(), transition: Transition.downToUp),
+        GetPage(name: '/check', page: () => Check(), transition: Transition.downToUp),
+        GetPage(name: '/health', page: () => Health(), transition: Transition.noTransition),
+        GetPage(name: '/chat', page: () => Chat(), transition: Transition.noTransition),
+        GetPage(name: '/market', page: () => Market(), transition: Transition.noTransition),
+        GetPage(name: '/request', page: () => Charge(), transition: Transition.noTransition),
       ],
-
     );
   }
 }
