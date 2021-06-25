@@ -83,7 +83,13 @@ class _HomeState extends State<Home> {
           child: Container(
             height: 60,
             child: TextButton(
-              child: Text('BOMAPP 다운로드'),
+              child: Text('BOMAPP 다운로드',
+                style: TextStyle(
+                  fontFamily: 'Nanum',
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xff3372dd),
+                ),
+              ),
               onPressed: () => launch('https://www.bomapp.co.kr/'),
             ),
           ),
@@ -102,28 +108,32 @@ class _HomeState extends State<Home> {
                   Text(
                     '보험을 나에게 꼭📌맞게',
                     style: TextStyle(
+                      fontFamily: 'Nanum',
                       color: Colors.white,
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
+                  SizedBox(height:10),
                   Text(
                     '보맵에서',
                     style: TextStyle(
+                      fontFamily: 'Nanum',
                       color: Colors.white,
                       fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                   DefaultTextStyle(
                     style: const TextStyle(
+                      fontFamily: 'Nanum',
                       fontSize: 40.0,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                     ),
                     child: Container(
-                      height: 60,
-                      width: 160,
+                      height: 46,
+                      width: 155,
                       child: AnimatedTextKit(
                         animatedTexts: [
                           RotateAnimatedText('모아보고!'),
@@ -142,8 +152,8 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: height / 7),
           SizedBox(
-            width: height < 800 ? widths / 1.4 : widths / 1.1,
-            height: height < 800 ? height / 1.4 : height / 1.1,
+            width: height < 800 ? widths * 0.8 * 0.7 : widths * 0.8,
+            height: height < 800 ? height * 0.8 * 0.7 : height * 0.8,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -160,7 +170,6 @@ class _HomeState extends State<Home> {
       )
     );
   }
-
   Widget webView(BuildContext context){
     final widths = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -185,35 +194,39 @@ class _HomeState extends State<Home> {
                   Container(
                     width: 430,
                     //TODO: Height 을 줘야하나..?
-                    margin: EdgeInsets.only(left: 100, top: height / 8),
+                    margin: EdgeInsets.only(left: 100, top: height * 0.15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           '보험을 나에게 꼭📌맞게',
                           style: TextStyle(
+                            fontFamily: 'Nanum',
                             color: Colors.white,
                             fontSize: 30,
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
+                        SizedBox(height: 10,),
                         Text(
                           '보맵에서',
                           style: TextStyle(
+                            fontFamily: 'Nanum',
                             color: Colors.white,
                             fontSize: 60,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
                         DefaultTextStyle(
                           style: const TextStyle(
+                            fontFamily: 'Nanum',
                             fontSize: 60.0,
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w800,
                           ),
                           child: Container(
-                            height: 100,
-                            width: 240,
+                            height: 70,
+                            width: 231,
                             child: AnimatedTextKit(
                               animatedTexts: [
                                 RotateAnimatedText('모아보고!'),
@@ -230,7 +243,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Positioned(
-                    bottom: height / 5,
+                    bottom: height * 0.21,
                     left: 88,
                     child: Container(
                       child: Row(
@@ -255,8 +268,9 @@ class _HomeState extends State<Home> {
                                 label: Text(
                                   'Google Play',
                                   style: TextStyle(
+                                    fontFamily: 'Nanum',
                                     color: !gisHovering ? Colors.white : Colors.blueAccent,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w800,
                                     fontSize: 17,
                                   ),
                                 ),
@@ -290,8 +304,9 @@ class _HomeState extends State<Home> {
                                 label: Text(
                                   'App Store',
                                   style: TextStyle(
+                                    fontFamily: 'Nanum',
                                     color: !aisHovering ? Colors.white : Colors.blueAccent,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w800,
                                     fontSize: 17,
                                   ),
                                 ),
@@ -309,9 +324,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   aisHovering ?
-                  showAQR() : Container(),
+                  showAQR(height) : Container(),
                   gisHovering ?
-                  showGQR() : Container(),
+                  showGQR(height) : Container(),
                 ],
               ),
             ],
@@ -320,8 +335,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  showAQR() => Positioned(
-    bottom: 240,
+  showAQR(double height) => Positioned(
+    bottom: height * 0.3,
     right: 50,
     child: Container(
       height: 150,
@@ -341,9 +356,8 @@ class _HomeState extends State<Home> {
     ),
   );
 
-
-  showGQR() => Positioned(
-    bottom: 240,
+  showGQR(double height) => Positioned(
+    bottom: height * 0.3,
     left: 110,
     child: Container(
       height: 150,

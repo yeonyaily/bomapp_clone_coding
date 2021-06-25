@@ -23,9 +23,17 @@ myStruct(BuildContext context, int page){
       bottomNavigationBar: (width < 850)
           ? BottomAppBar(
         child: Container(
+          color: const Color(0xff3372dd),
           height: 60,
           child: TextButton(
-            child: Text('BOMAPP 다운로드'),
+            child: Text(
+                'BOMAPP 다운로드',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontFamily: 'Nanum',
+                color: Colors.white,
+              ),
+            ),
             onPressed: () => launch('https://www.bomapp.co.kr/'),
           ),
         ),

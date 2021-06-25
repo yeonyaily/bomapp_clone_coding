@@ -43,7 +43,7 @@ appBar(BuildContext context, int page) {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 '공동인증서 복사하기',
-                style: TextStyle(color: page !=0 ? Colors.black : Colors.white, fontSize: 16),
+                style: TextStyle(color: page !=0 ? Colors.black : Colors.white, fontSize: 16, fontFamily: 'Nanum',fontWeight: FontWeight.w800,),
               ),
             ),
           ),
