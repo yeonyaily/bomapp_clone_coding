@@ -3,6 +3,7 @@ import 'package:bom_app_clone/service/pointerSignal.dart';
 import 'package:bom_app_clone/widget/main/addBar.dart';
 import 'package:bom_app_clone/widget/main/drawer.dart';
 import 'package:bom_app_clone/widget/sub/image.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
