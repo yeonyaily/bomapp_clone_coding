@@ -4,5 +4,6 @@ linter:
   rules:
     lines_longer_than_80_chars: false
     public_member_api_docs: false
-    avoid_positional_boolean_parameters : false
-    
+    avoid_positional_boolean_parameters: false
+
+

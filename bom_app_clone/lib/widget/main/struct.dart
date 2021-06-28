@@ -1,16 +1,16 @@
-import 'package:bom_app_clone/service/pointerSignal.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../service/scroll.dart';
 import 'appbar.dart';
 import 'body.dart';
 import 'drawer.dart';
 
-myStruct(BuildContext context, int page) {
-  late double width = MediaQuery.of(context).size.width;
-  Scroll scroll = new Scroll();
+dynamic myStruct(BuildContext context, int page) {
+  late var width = MediaQuery.of(context).size.width;
+  var scroll = Scroll();
   return Listener(
-    onPointerSignal: (PointerSignalEvent event) {
+    onPointerSignal: (event) {
       scroll.pointerSignal(event, page);
     },
     child: Stack(children: [
@@ -21,7 +21,7 @@ myStruct(BuildContext context, int page) {
         body: Stack(
           children: [
             myBody((width > 850) ? true : false, context, page),
-            myAppBar(context, page, (width > 850) ? true : false)
+            appBar(context, page, (width > 850) ? true : false)
           ],
         ),
         bottomNavigationBar: (width < 850)

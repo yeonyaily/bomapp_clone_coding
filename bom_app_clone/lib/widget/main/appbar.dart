@@ -2,8 +2,7 @@ import "package:animated_icon_button/animated_icon_button.dart";
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-myAppBar(BuildContext context, int page, bool isBig) {
+dynamic appBar(BuildContext context, int page, bool isBig) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

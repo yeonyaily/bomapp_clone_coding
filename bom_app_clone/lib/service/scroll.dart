@@ -1,13 +1,14 @@
-import 'package:bom_app_clone/service/time.dart';
-import 'package:bom_app_clone/widget/sub/text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 
+import '../widget/sub/text.dart';
+import 'time.dart';
+
 class Scroll {
-  MyText myText = new MyText();
+  MyText myText = MyText();
 
   void pointerSignal(PointerSignalEvent event, int index) {
-    Duration lastDuration = MyTime.duration;
+    var lastDuration = MyTime.duration;
     if (event is PointerScrollEvent) {
       if (event.scrollDelta.dy < 0 &&
           event.timeStamp - lastDuration > Duration(milliseconds: 700)) {

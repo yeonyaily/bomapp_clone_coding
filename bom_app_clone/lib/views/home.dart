@@ -1,13 +1,15 @@
 import 'dart:async';
-import 'package:bom_app_clone/service/pointerSignal.dart';
-import 'package:bom_app_clone/widget/main/appbar.dart';
-import 'package:bom_app_clone/widget/main/drawer.dart';
-import 'package:bom_app_clone/widget/sub/image.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../service/scroll.dart';
+import '../widget/main/appbar.dart';
+import '../widget/main/drawer.dart';
+import '../widget/sub/image.dart';
 
 
 class Home extends StatefulWidget {
@@ -15,23 +17,34 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
   final page = 0;
   bool aisHovering = false;
   bool gisHovering = false;
   int _index = 0;
   int _index2 = 1;
+  late final AnimationController _controller = AnimationController(
+  duration: const Duration(seconds: 2),
+  vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+  begin: Offset.zero,
+  end: const Offset(0.0, 0.5),
+  ).animate(CurvedAnimation(
+  parent: _controller,
+  curve: Curves.ease,
+  ));
 
   @override
   void initState() {
     super.initState();
 
 
-    const oneSec = const Duration(seconds: 5);
-    new Timer.periodic(
+    const oneSec = Duration(seconds: 5);
+    Timer.periodic(
         oneSec,
-        (Timer t) => setState(() {
+        (t) => setState(() {
               if (_crossFadeState == CrossFadeState.showFirst) {
                 if (_index == 0) {
                   _index2 = 1;
@@ -62,10 +75,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Scroll scroll = new Scroll();
+    var scroll = Scroll();
     final widths = MediaQuery.of(context).size.width;
     return Listener(
-    onPointerSignal: (PointerSignalEvent event) {
+    onPointerSignal: (event) {
     scroll.pointerSignal(event, page);
     },
       child: Scaffold(
@@ -74,7 +87,7 @@ class _HomeState extends State<Home> {
         body: widths < 1000
             ? mobileView(context)
             : Stack(
-                children: [webView(context), myAppBar(context, page, true)],
+                children: [webView(context), appBar(context, page, true)],
               ),
         bottomNavigationBar: widths < 1000
             ? BottomAppBar(
@@ -100,7 +113,7 @@ class _HomeState extends State<Home> {
   Widget mobileView(BuildContext context) {
     final widths = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    MyImage myImage = new MyImage();
+    var myImage = MyImage();
     return ListView(
       children: [
         SizedBox(
@@ -182,7 +195,7 @@ class _HomeState extends State<Home> {
   }
   Widget webView(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    MyImage myImage = new MyImage();
+    var myImage = MyImage();
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -265,7 +278,7 @@ class _HomeState extends State<Home> {
                             icon: SizedBox(
                               width: 30,
                               height: 25,
-                              child: new Image.asset(
+                              child: Image.asset(
                                 'assets/GooglePlay.png',
                                 color: !gisHovering ? Colors.white : Colors.blueAccent,
                               ),
@@ -301,7 +314,7 @@ class _HomeState extends State<Home> {
                             icon: SizedBox(
                               width: 30,
                               height: 25,
-                              child: new Image.asset(
+                              child: Image.asset(
                                 'assets/apple.png',
                                 color: !aisHovering ? Colors.white : Colors.blueAccent,
                               ),
@@ -332,6 +345,18 @@ class _HomeState extends State<Home> {
               showAQR(height) : Container(),
               gisHovering ?
               showGQR(height) : Container(),
+              Positioned(
+                left: 80,
+                bottom: 50,
+                child: SlideTransition(
+                  position: _offsetAnimation,
+                  child: Icon(
+                    LineIcons.values['arrowDown'],
+                    color: Colors.white,
+                    size: 60,
+                  ),
+                ),
+              )
             ],
           ),
         ],
@@ -339,7 +364,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  showAQR(double height) => Positioned(
+  dynamic showAQR(double height) => Positioned(
     bottom: height * 0.3,
     right: 50,
     child: Container(
@@ -360,7 +385,7 @@ class _HomeState extends State<Home> {
     ),
   );
 
-  showGQR(double height) => Positioned(
+  dynamic showGQR(double height) => Positioned(
     bottom: height * 0.3,
     left: 110,
     child: Container(
