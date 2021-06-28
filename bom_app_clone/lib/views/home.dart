@@ -3,10 +3,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../service/get.dart';
 import '../service/scroll.dart';
 import '../widget/main/appbar.dart';
 import '../widget/main/drawer.dart';
@@ -16,13 +18,11 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  CrossFadeState _crossFadeState = CrossFadeState.showFirst;
+  final controller = Get.put(BuilderController());
   final page = 0;
-  bool apple_Hovering = false;
-  bool google_Hovering = false;
-  int _index = 0;
-  int _index2 = 1;
+
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
@@ -42,32 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     const oneSec = Duration(seconds: 5);
     Timer.periodic(
         oneSec,
-        (t) => setState(() {
-              if (_crossFadeState == CrossFadeState.showFirst) {
-                if (_index == 0) {
-                  _index2 = 1;
-                  _crossFadeState = CrossFadeState.showSecond;
-                } else if (_index == 2) {
-                  _index2 = 0;
-                  _crossFadeState = CrossFadeState.showSecond;
-                } else {
-                  _index2 = 2;
-                  _crossFadeState = CrossFadeState.showSecond;
-                  _index = 0;
-                }
-              } else {
-                if (_index2 == 1) {
-                  _index = 2;
-                  _crossFadeState = CrossFadeState.showFirst;
-                } else if (_index2 == 0) {
-                  _index = 1;
-                  _crossFadeState = CrossFadeState.showFirst;
-                } else {
-                  _index = 0;
-                  _crossFadeState = CrossFadeState.showFirst;
-                }
-              }
-            }));
+        (t) => controller.crossFadeChange());
   }
 
   @override
@@ -75,36 +50,41 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     var scroll = Scroll();
     final widths = MediaQuery.of(context).size.width;
     return Listener(
-      onPointerSignal: (event) {
-        scroll.pointerSignal(event, page);
-      },
-      child: LayoutBuilder(
-        builder: (context, constraints){
-          final width = constraints.maxWidth;
-          return Scaffold(
-            endDrawer: drawer(context),
-            body: width < 1000 ? mobileView(context) : Stack(children: [webView(context),appBar(context, page, true)],),
+          onPointerSignal: (event) {
+            print(event);
+            scroll.pointerSignal(event, page);
+          },
+          child: Scaffold(
             bottomNavigationBar: widths < 1000
-            ? BottomAppBar(
-                child: Container(
-                  height: 60,
-                  child: TextButton(
-                    child: Text(
-                      'BOMAPP 다운로드',
-                      style: TextStyle(
-                        fontFamily: "Nanum",
-                        fontWeight: FontWeight.w800,
+                ? BottomAppBar(
+                    child: Container(
+                      height: 60,
+                      child: TextButton(
+                        child: Text(
+                          'BOMAPP 다운로드',
+                          style: TextStyle(
+                            fontFamily: "Nanum",
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        onPressed: () => launch('https://www.bomapp.co.kr/'),
                       ),
                     ),
-                    onPressed: () => launch('https://www.bomapp.co.kr/'),
-                  ),
-                ),
-              )
-            : null,
-          );
-        }
-      ),
-    );
+                  )
+                : null,
+            endDrawer: drawer(context),
+            body: LayoutBuilder(
+              builder: (context,constraints) {
+                final widths = constraints.maxWidth;        
+                return widths < 1000? mobileView(context)
+                : Stack(
+                    children: [webView(context), appBar(context, page, true)],
+                  );
+
+              }
+            ),
+          ),
+        );
   }
 
   Widget mobileView(BuildContext context) {
@@ -183,10 +163,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AnimatedCrossFade(
-                    firstChild: myImage.mainImage(_index),
-                    secondChild: myImage.mainImage(_index2),
+                    firstChild: myImage.mainImage(controller.index),
+                    secondChild: myImage.mainImage(controller.index2),
                     duration: const Duration(seconds: 3),
-                    crossFadeState: _crossFadeState,
+                    crossFadeState: controller.crossFadeState,
                   ),
                 ],
               ),
@@ -196,191 +176,189 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       }
     );
   }
-  
+
   Widget webView(BuildContext context) {
     var myImage = MyImage();
     return LayoutBuilder(
       builder: (context, constraints) {
         final height = constraints.maxHeight;
-        return Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                child: AnimatedCrossFade(
-                  firstChild: myImage.mainImage(_index),
-                  secondChild: myImage.mainImage(_index2),
-                  duration: const Duration(seconds: 3),
-                  crossFadeState: _crossFadeState,
-                ),
-              ),
-              Stack(
+        return GetBuilder<BuilderController>(
+          builder: (_){
+            return Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 430,
-                    margin: EdgeInsets.only(left: 100, top: height * 0.24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '보험을 나에게 꼭📌맞게',
-                          style: TextStyle(
-                            fontFamily: 'Nanum',
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          '보맵에서',
-                          style: TextStyle(
-                            fontFamily: 'Nanum',
-                            color: Colors.white,
-                            fontSize: 60,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        DefaultTextStyle(
-                          style: const TextStyle(
-                            fontFamily: 'Nanum',
-                            fontSize: 60.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          child: Container(
-                            height: 70,
-                            width: 231,
-                            child: AnimatedTextKit(
-                              animatedTexts: [
-                                RotateAnimatedText('모아보고!'),
-                                RotateAnimatedText('골라보고!'),
-                                RotateAnimatedText('살펴보고!'),
-                              ],
-                              isRepeatingAnimation: true,
-                              repeatForever: true,
-                              pause: const Duration(milliseconds: 100),
-                            ),
-                          ),
-                        ),
-                      ],
+                  SizedBox(
+                    child: AnimatedCrossFade(
+                      firstChild: myImage.mainImage(controller.index),
+                      secondChild: myImage.mainImage(controller.index2),
+                      duration: const Duration(seconds: 3),
+                      crossFadeState: controller.crossFadeState,
                     ),
                   ),
-                  Positioned(
-                    bottom: height * 0.21,
-                    left: 88,
-                    child: Container(
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () => null,
-                            onHover: (hovering) {
-                              setState(() => google_Hovering = hovering);
-                            },
-                            child: SizedBox(
-                              width: 200,
-                              height: 50,
-                              child: ElevatedButton.icon(
-                                icon: SizedBox(
-                                  width: 30,
-                                  height: 25,
-                                  child: Image.asset(
-                                    'assets/GooglePlay.png',
-                                    color: !google_Hovering
-                                        ? Colors.white
-                                        : Colors.blueAccent,
-                                  ),
-                                ),
-                                label: Text(
-                                  'Google Play',
-                                  style: TextStyle(
-                                    fontFamily: 'Nanum',
-                                    color: !google_Hovering
-                                        ? Colors.white
-                                        : Colors.blueAccent,
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  primary: !google_Hovering
-                                      ? Color(0xff6d96e5)
-                                      : Colors.white,
-                                  elevation: 0,
-                                  shadowColor: Colors.transparent,
-                                ),
-                                onPressed: () {},
+                  Stack(
+                    children: [
+                      Container(
+                        width: 430,
+                        margin: EdgeInsets.only(left: 100, top: height * 0.24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              '보험을 나에게 꼭📌맞게',
+                              style: TextStyle(
+                                fontFamily: 'Nanum',
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          InkWell(
-                            onTap: () => null,
-                            onHover: (hovering) {
-                              setState(() => apple_Hovering = hovering);
-                            },
-                            child: SizedBox(
-                              width: 200,
-                              height: 50,
-                              child: ElevatedButton.icon(
-                                icon: SizedBox(
-                                  width: 30,
-                                  height: 25,
-                                  child: Image.asset(
-                                    'assets/apple.png',
-                                    color: !apple_Hovering
-                                        ? Colors.white
-                                        : Colors.blueAccent,
-                                  ),
-                                ),
-                                label: Text(
-                                  'App Store',
-                                  style: TextStyle(
-                                    fontFamily: 'Nanum',
-                                    color: !apple_Hovering
-                                        ? Colors.white
-                                        : Colors.blueAccent,
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  primary: !apple_Hovering
-                                      ? Color(0xff6d96e5)
-                                      : Colors.white,
-                                  elevation: 0,
-                                  shadowColor: Colors.transparent,
-                                ),
-                                onPressed: () {},
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              '보맵에서',
+                              style: TextStyle(
+                                fontFamily: 'Nanum',
+                                color: Colors.white,
+                                fontSize: 60,
+                                fontWeight: FontWeight.w800,
                               ),
                             ),
-                          ),
-                        ],
+                            DefaultTextStyle(
+                              style: const TextStyle(
+                                fontFamily: 'Nanum',
+                                fontSize: 60.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              child: Container(
+                                height: 70,
+                                width: 231,
+                                child: AnimatedTextKit(
+                                  animatedTexts: [
+                                    RotateAnimatedText('모아보고!'),
+                                    RotateAnimatedText('골라보고!'),
+                                    RotateAnimatedText('살펴보고!'),
+                                  ],
+                                  isRepeatingAnimation: true,
+                                  repeatForever: true,
+                                  pause: const Duration(milliseconds: 100),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: height * 0.21,
+                        left: 88,
+                        child: Container(
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () => null,
+                                onHover: controller.googleHoverChange,
+                                child: SizedBox(
+                                  width: 200,
+                                  height: 50,
+                                  child: ElevatedButton.icon(
+                                    icon: SizedBox(
+                                      width: 30,
+                                      height: 25,
+                                      child: Image.asset(
+                                            'assets/GooglePlay.png',
+                                            color:
+                                            !controller.googleHover ? Colors.white : Colors.blueAccent,
+                                          ),
+                                    ),
+                                    label: Text(
+                                      'Google Play',
+                                      style: TextStyle(
+                                        fontFamily: 'Nanum',
+                                        color:
+                                        !controller.googleHover ? Colors.white : Colors.blueAccent,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      primary:
+                                      !controller.googleHover ? Color(0xff6d96e5) : Colors.white,
+                                      elevation: 0,
+                                      shadowColor: Colors.transparent,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              InkWell(
+                                onTap: () => null,
+                                onHover: controller.appleHoverChange,
+                                child: SizedBox(
+                                  width: 200,
+                                  height: 50,
+                                  child: ElevatedButton.icon(
+                                    icon: SizedBox(
+                                      width: 30,
+                                      height: 25,
+                                      child: Image.asset(
+                                        'assets/apple.png',
+                                        color: !controller.appleHover
+                                            ? Colors.white
+                                            : Colors.blueAccent,
+                                      ),
+                                    ),
+                                    label: Text(
+                                      'App Store',
+                                      style: TextStyle(
+                                        fontFamily: 'Nanum',
+                                        color: !controller.appleHover
+                                            ? Colors.white
+                                            : Colors.blueAccent,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: !controller.appleHover
+                                          ? Color(0xff6d96e5)
+                                          : Colors.white,
+                                      elevation: 0,
+                                      shadowColor: Colors.transparent,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      controller.appleHover ? showAQR(height) : Container(),
+                      controller.googleHover ? showGQR(height) : Container(),
+                      Positioned(
+                        left: 80,
+                        bottom: 50,
+                        child: SlideTransition(
+                          position: _offsetAnimation,
+                          child: Icon(
+                            LineIcons.values['arrowDown'],
+                            color: Colors.white,
+                            size: 60,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  apple_Hovering ? showAQR(height) : Container(),
-                  google_Hovering ? showGQR(height) : Container(),
-                  Positioned(
-                    left: 80,
-                    bottom: 50,
-                    child: SlideTransition(
-                      position: _offsetAnimation,
-                      child: Icon(
-                        LineIcons.values['arrowDown'],
-                        color: Colors.white,
-                        size: 60,
-                      ),
-                    ),
-                  )
                 ],
               ),
-            ],
-          ),
+            );
+          },
+
         );
       }
     );
