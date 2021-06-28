@@ -1,14 +1,14 @@
-import 'package:bom_app_clone/widget/sub/image.dart';
-import 'package:bom_app_clone/widget/sub/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import '../sub/image.dart';
+import '../sub/text.dart';
 
 Widget myBody(bool isBig, BuildContext context, int page) {
-  MyText myText = new MyText();
-  MyImage myImage = new MyImage();
-  late double width = MediaQuery.of(context).size.width;
-  late double height = MediaQuery.of(context).size.height;
+  var myText = MyText();
+  var myImage = MyImage();
+  late var width = MediaQuery.of(context).size.width;
+  late var height = MediaQuery.of(context).size.height;
   return Padding(
     padding: EdgeInsets.all(isBig ? 8 : 16),
     child: ListView(
@@ -94,14 +94,15 @@ Widget myBody(bool isBig, BuildContext context, int page) {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("0${page}", style: TextStyle(fontSize: 30),),
+                  Text("0$page", style: TextStyle(fontSize: 30),),
                   Text(" / 06", style: TextStyle(fontSize: 30, color: Colors.grey[350]),),
                   TextButton(
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
+                        (states) {
+                          if (states.contains(MaterialState.hovered)) {
                             return Colors.grey;
+                          }
                           return Colors.black;
                         },
                       ),
@@ -117,9 +118,10 @@ Widget myBody(bool isBig, BuildContext context, int page) {
                   TextButton(
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
+                        (states) {
+                          if (states.contains(MaterialState.hovered)) {
                             return Colors.grey;
+                          }
                           return Colors.black;
                         },
                       ),

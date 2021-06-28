@@ -1,6 +1,6 @@
-import 'package:bom_app_clone/widget/main/struct.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../widget/main/struct.dart';
 
 class Manager extends StatelessWidget {
   final page = 1;

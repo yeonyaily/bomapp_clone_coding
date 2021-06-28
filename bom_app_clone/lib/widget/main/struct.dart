@@ -2,7 +2,7 @@ import 'package:bom_app_clone/service/pointerSignal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'addBar.dart';
+import 'appbar.dart';
 import 'body.dart';
 import 'drawer.dart';
 
@@ -21,7 +21,7 @@ myStruct(BuildContext context, int page) {
         body: Stack(
           children: [
             myBody((width > 850) ? true : false, context, page),
-            appBar(context, page, (width > 850) ? true : false)
+            myAppBar(context, page, (width > 850) ? true : false)
           ],
         ),
         bottomNavigationBar: (width < 850)

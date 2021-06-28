@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bom_app_clone/service/pointerSignal.dart';
-import 'package:bom_app_clone/widget/main/addBar.dart';
+import 'package:bom_app_clone/widget/main/appbar.dart';
 import 'package:bom_app_clone/widget/main/drawer.dart';
 import 'package:bom_app_clone/widget/sub/image.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -56,7 +56,8 @@ class _HomeState extends State<Home> {
                   _crossFadeState = CrossFadeState.showFirst;
                 }
               }
-            }));
+        })
+    );
   }
 
   @override
@@ -73,7 +74,7 @@ class _HomeState extends State<Home> {
         body: widths < 1000
             ? mobileView(context)
             : Stack(
-                children: [webView(context), appBar(context, page, true)],
+                children: [webView(context), myAppBar(context, page, true)],
               ),
         bottomNavigationBar: widths < 1000
             ? BottomAppBar(
@@ -180,7 +181,6 @@ class _HomeState extends State<Home> {
     );
   }
   Widget webView(BuildContext context) {
-    final widths = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     MyImage myImage = new MyImage();
     return Container(
@@ -199,7 +199,6 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 width: 430,
-                //TODO: Height 을 줘야하나..?
                 margin: EdgeInsets.only(left: 100, top: height * 0.24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
