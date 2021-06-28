@@ -2,8 +2,7 @@ import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-appBar(BuildContext context, int page, bool isBig) {
-  final widths = MediaQuery.of(context).size.width;
+dynamic appBar(BuildContext context, int page, bool isBig) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

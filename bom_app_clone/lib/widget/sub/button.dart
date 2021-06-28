@@ -7,7 +7,7 @@ Widget drawerText(String text) {
     leading: TextButton(
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
+              (states) {
             if (states.contains(MaterialState.hovered)) return Colors.indigo;
             return Colors.white;
           },
@@ -26,9 +26,10 @@ Widget drawerIcon(String icon){
   return TextButton(
     style: ButtonStyle(
       foregroundColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.hovered))
+            (states) {
+          if (states.contains(MaterialState.hovered)) {
             return Colors.white;
+          }
           return Colors.grey;
         },
       ),

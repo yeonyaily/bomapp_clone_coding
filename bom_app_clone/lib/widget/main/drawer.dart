@@ -2,7 +2,7 @@ import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import '../sub/button.dart';
 
-drawer(BuildContext context) {
+dynamic drawer(BuildContext context) {
   return Container(
     width: 400,
     color: Colors.black,
