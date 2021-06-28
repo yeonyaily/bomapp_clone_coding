@@ -65,11 +65,7 @@ packages:
     source: hosted
     version: "1.0.3"
   effective_dart:
-<<<<<<< HEAD
-    dependency: "direct main"
-=======
     dependency: "direct dev"
->>>>>>> 59f2df087e8a262d33ecaa1fbb515f8ccd44a321
     description:
       name: effective_dart
       url: "https://pub.dartlang.org"
